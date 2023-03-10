@@ -20,11 +20,17 @@ display_window.grid(row=0, column=0)
 body_window = Frame(window, width=360, height=492)
 body_window.grid(row=1, column=0)
 
+# Variable to store all input values
+all_values = ""
 # Functions for the operations
-def inputValues():
-    a = eval("0")
+def inputValues(event):
+    # Keeping the changes at all_values
+    global all_values
+    # Storing the event
+    all_values = all_values + str(event)
+    result = eval("1")
     # Value to the display
-    text_value.set(a)
+    text_value.set(all_values)
 
 # Creating label
 text_value = StringVar()
@@ -82,7 +88,7 @@ b_cos = Button(body_window, text="cos", width=10, height=3, bg=gray, font="bitte
 b_cos.place(x=90, y=0)
 b_tan = Button(body_window, text="tan", width=10, height=3, bg=gray, font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_tan.place(x=180, y=0)
-b_mod = Button(body_window, text="mod", width=10, height=3, bg=gray, font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
+b_mod = Button(body_window, command=lambda: inputValues("%"), text="mod", width=10, height=3, bg=gray, font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_mod.place(x=270, y=0)
 
 
