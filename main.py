@@ -16,7 +16,6 @@ window.config(bg=black)
 # Split window into display and buttons
 display_window = Frame(window, width=360, height=105, bg=dark_blue)
 display_window.grid(row=0, column=0)
-
 body_window = Frame(window, width=360, height=492)
 body_window.grid(row=1, column=0)
 
@@ -36,15 +35,42 @@ def input_values(event):
 
 # Function to calculate
 def calculate():
-    global all_values
-    result = eval(all_values)
-    text_value.set(result)
+    try:
+        global all_values
+        result = eval(all_values)
+        text_value.set(result)
+    except ZeroDivisionError:
+        text_value.set("Error")
+
 
 # Function to clear the display
 def clean_display():
     global all_values
     all_values = ""
     text_value.set("")
+
+
+# Trigonometric functions
+def sin():
+    global all_values
+    value = math.sin(float(all_values))
+    all_values = str(value)
+    text_value.set(all_values)
+
+
+def cos():
+    global all_values
+    value = math.cos(float(all_values))
+    all_values = str(value)
+    text_value.set(all_values)
+
+
+def tan():
+    global all_values
+    value = math.tan(float(all_values))
+    all_values = str(value)
+    text_value.set(all_values)
+
 
 # Creating label
 text_value = StringVar()
@@ -118,13 +144,13 @@ b_sqr.place(x=180, y=71)
 b_raise = Button(body_window, command=lambda: input_values("^"), text="x^y", width=10, height=3, bg=gray,
                  font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_raise.place(x=270, y=71)
-b_sin = Button(body_window, command=lambda: input_values("sin"), text="sin", width=10, height=3, bg=gray,
+b_sin = Button(body_window, command=sin, text="sin", width=10, height=3, bg=gray,
                font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_sin.place(x=0, y=0)
-b_cos = Button(body_window, command=lambda: input_values("cos"), text="cos", width=10, height=3, bg=gray,
+b_cos = Button(body_window, command=cos, text="cos", width=10, height=3, bg=gray,
                font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_cos.place(x=90, y=0)
-b_tan = Button(body_window, command=lambda: input_values("tan"), text="tan", width=10, height=3, bg=gray,
+b_tan = Button(body_window, command=tan, text="tan", width=10, height=3, bg=gray,
                font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_tan.place(x=180, y=0)
 b_mod = Button(body_window, command=lambda: input_values("%"), text="mod", width=10, height=3, bg=gray,
