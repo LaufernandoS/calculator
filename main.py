@@ -1,7 +1,6 @@
 # Importing libraries
 import math
 from tkinter import *
-from tkinter import ttk
 
 # Define some colours
 black, white, dark_blue, green, light_green, gray = "#000000", "#ffffff", "#06042b", "#077d21", "#83e864", "#adadad"
@@ -29,8 +28,12 @@ def input_values(event):
     global all_values
     # Storing the event
     all_values = all_values + str(event)
-    # Value to the display
-    text_value.set(all_values)
+    # Values to the display
+    if "^" in all_values:
+        all_values.replace("**", "^")
+        text_value.set(all_values)
+    else:
+        text_value.set(all_values)
 
 
 # Function to calculate
@@ -138,7 +141,7 @@ b_pi.place(x=0, y=71)
 b_e = Button(body_window, command=lambda: input_values("e"), text="e", width=10, height=3, bg=gray,
              font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_e.place(x=90, y=71)
-b_sqr = Button(body_window, command=lambda: input_values("^2"), text="x^2", width=10, height=3, bg=gray,
+b_sqr = Button(body_window, command=lambda: input_values("**2"), text="x^2", width=10, height=3, bg=gray,
                font="bitter 10 bold", relief=RAISED, overrelief=RIDGE)
 b_sqr.place(x=180, y=71)
 b_raise = Button(body_window, command=lambda: input_values("^"), text="x^y", width=10, height=3, bg=gray,
